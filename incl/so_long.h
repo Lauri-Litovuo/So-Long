@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/08 10:58:32 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:34:25 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@
 # define COLL 'C'
 # define EXITS 'E'
 # define PLAYERS 'P'
-# define WALL 1
-# define SPACE 0
+# define WALL '1'
+# define SPACE '0'
 
-enum errors
+enum error
 {
 	FIL = 1,
 	MLC = 2,
 	OS_MAP = 3,
 	WALLS = 4,
-}
+	REQ = 5
+};
 
 typedef struct s_start
 {
@@ -49,7 +50,6 @@ typedef struct s_map
 	int		max_y;
 }			t_map;
 
-/*change textures based on the size*/
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -57,5 +57,13 @@ typedef struct s_data
 	void	*win_ptr;
 	void	*textures[5];
 }			t_data;
+
+
+void	free_data(t_data data);
+
+void	ft_error(int errcode);
+
+int		validate_map(char *file, t_map *map);
+
 
 #endif
