@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/07 18:18:43 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/08 10:58:32 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include "../mlx/mlx.h"
 # include "../libft/libft.h"
 # define TEXTURE_SIZE 50
-# define COLL C
-# define EXITS E
-# define PLAYERS P
+# define COLL 'C'
+# define EXITS 'E'
+# define PLAYERS 'P'
 # define WALL 1
+# define SPACE 0
 
 enum errors
 {
