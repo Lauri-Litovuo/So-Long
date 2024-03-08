@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/07 18:21:21 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/08 11:05:00 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,21 @@ int	check_requirements(char **map_copy, t_map *map)
 
 	i = 0;
 	j = 0;
-
+	while (!map_copy[i])
+	{
+		while (map_copy[i][j] != '\0')
+		{
+			if (map_copy[i][j] == WALL || map_copy[i][j] == SPACE)
+				j++;
+			else if ((map_copy[i][j] == COLL && ++map->collectibles) || \
+			(map_copy[i][j] == EXITS && ++map->exit) || \
+			(map_copy[i][j] == PLAYERS && ++map->player))
+				j++;
+			else
+				return (ft_error(OS_MAP), 3);
+		}
+		i++;
+	}
 	if (map->collectibles < 1 || map->exit != 1 || map->player != 1)
 		return (4);
 	return (0);
