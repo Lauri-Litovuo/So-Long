@@ -6,15 +6,18 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/08 11:05:00 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/08 16:20:12 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
+#include <stdio.h>
 
-int		get_sizes_xy(char *file, t_map *map);
-char	**get_map_copy(char *file, t_map *map);
-int		check_borders(char **map_copy, t_map *map);
+static int		get_sizes_xy(char *file, t_map *map);
+static char		**get_map_copy(char *file, t_map *map);
+static int		check_borders(char **map_copy, t_map *map);
+static int		check_requirements(char **map_copy, t_map *map);
+void			add_stats(t_map *map, int stat);
 
 int	validate_map(char *file, t_map *map)
 {
@@ -28,17 +31,18 @@ int	validate_map(char *file, t_map *map)
 	map_copy = get_map_copy(file, map);
 	if (map_copy == NULL)
 		return (2);
-	check_walls(map_copy, map);
-	check_requirements(map_copy, map);
+	if (check_borders(map_copy, map) != 0)
+		return (3);
+	return (check_requirements(map_copy, map));
 	return (0);
 }
 
-int	get_sizes_xy(char *file, t_map *map)
+static int	get_sizes_xy(char *file, t_map *map)
 {
-	int		i;
-	int		fd;
-	char	*buffer;
-	int		len;
+	int			i;
+	int			fd;
+	char		*buffer;
+	size_t		len;
 
 	len = 0;
 	i = 0;
@@ -61,7 +65,7 @@ int	get_sizes_xy(char *file, t_map *map)
 	return (0);
 }
 
-char	**get_map_copy(char *file, t_map *map)
+static char	**get_map_copy(char *file, t_map *map)
 {
 	char	*buffer;
 	char	**map_copy;
@@ -82,12 +86,13 @@ char	**get_map_copy(char *file, t_map *map)
 			break ;
 		map_copy[i] = ft_strdup(buffer);
 		free(buffer);
+		i++;
 	}
 	close (fd);
 	return (map_copy);
 }
 
-int	check_borders(char **map_copy, t_map *map)
+static int	check_borders(char **map_copy, t_map *map)
 {
 	int	i;
 	int	j;
@@ -96,48 +101,64 @@ int	check_borders(char **map_copy, t_map *map)
 	while (i < map->size_y)
 	{
 		j = 0;
-		if (i == 0 || i == map->size_y - 1)
+		if (i == 0 || (i == map->size_y - 1 && i != 0))
 		{
-			while (j < map->size_x && map_copy[i][j] == "\n")
+			while (j < map->size_x && map_copy[i][j] == WALL)
 				j++;
-			if (j != map->size_x)
+			if (j != map->size_x - 1)
 				return (ft_error(WALLS), 1);
 		}
 		else
 		{
-			if ((j == 0 || j == map->size_x - 1) && map_copy[i][j] != WALL)
-				return (ft_error(WALLS), 1);
+			while (j < map->size_x - 1)
+			{
+				if ((j == 0 || j == map->size_x - 2) && map_copy[i][j] != WALL)
+					return (ft_error(WALLS), 1);
+				j++;
+			}
 		}
 		i++;
 	}
 	return (0);
 }
 
-int	check_requirements(char **map_copy, t_map *map)
+static int	check_requirements(char **map_copy, t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (!map_copy[i])
+	while (i < map->size_y)
 	{
-		while (map_copy[i][j] != '\0')
+		j = 0;
+		while (map_copy[i][j] != '\n')
 		{
 			if (map_copy[i][j] == WALL || map_copy[i][j] == SPACE)
 				j++;
-			else if ((map_copy[i][j] == COLL && ++map->collectibles) || \
-			(map_copy[i][j] == EXITS && ++map->exit) || \
-			(map_copy[i][j] == PLAYERS && ++map->player))
+			else if (map_copy[i][j] == COLL || map_copy[i][j] == EXITS || \
+			map_copy[i][j] == PLAYERS)
+			{
+				add_stats(map, map_copy[i][j]);
 				j++;
+			}
 			else
-				return (ft_error(OS_MAP), 3);
+				break ;
 		}
 		i++;
 	}
 	if (map->collectibles < 1 || map->exit != 1 || map->player != 1)
 		return (4);
 	return (0);
+}
+
+void	add_stats(t_map *map, int stat)
+{
+	if (stat == COLL)
+		map->collectibles++;
+	else if (stat == EXITS)
+		map->exit++;
+	else if (stat == PLAYERS)
+		map->player++;
 }
 
 
