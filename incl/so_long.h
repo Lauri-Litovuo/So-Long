@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:34:25 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:45:52 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define PLAYERS 'P'
 # define WALL '1'
 # define SPACE '0'
+# define FILL '-1'
 
 enum error
 {
@@ -29,7 +30,9 @@ enum error
 	MLC = 2,
 	OS_MAP = 3,
 	WALLS = 4,
-	REQ = 5
+	REQ = 5,
+	RECT = 6,
+	PATH = 7
 };
 
 typedef struct s_start
@@ -43,7 +46,9 @@ typedef struct s_map
 	int		size_x;
 	int		size_y;
 	int		collectibles;
+	int		collectibles_fill;
 	int		exit;
+	int		exit_fill;
 	int		player;
 	t_start	start;
 	int		max_x;
@@ -64,6 +69,9 @@ void	free_data(t_data data);
 void	ft_error(int errcode);
 
 int		validate_map(char *file, t_map *map);
+
+int		get_sizes_xy(char *file, t_map *map);
+char	**get_map_copy(char *file, t_map *map);
 
 
 #endif
