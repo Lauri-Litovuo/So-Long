@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:47:11 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/08 15:39:33 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:22:58 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 void	ft_error(int errcode)
 {
 	if (errcode == FIL)
-		write (2, "Error\nOpening file.", 19);
+		write (2, "Error\nOpening file.\n", 20);
 	else if (errcode == MLC)
-		write (2, "Error\nMalloc failed", 19);
+		write (2, "Error\nMalloc failed.\n", 21);
 	else if (errcode == MLC)
-		write (2, "Error\nMalloc failed", 19);
+		write (2, "Error\nMalloc failed\n", 20);
 	else if (errcode == OS_MAP)
-		write (2, "Error\nOversize map.", 19);
+		write (2, "Error\nOversize map.\n", 20);
 	else if (errcode == WALLS)
-		write (2, "Error\nMap not surrounded by walls.", 34);
-	else
+		write (2, "Error\nMap not surrounded by walls.\n", 35);
+	else if (errcode == RECT)
+		write (2, "Error\nMap is not rectangular.\n", 30);
+	else if (errcode == REQ)
 		write (2, "Error\nMap requirements not met.\n", 32);
+	else if (errcode == PATH)
+		write (2, "Error\nNo paths to win.\n", 23);
 }
