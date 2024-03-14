@@ -6,12 +6,13 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/13 14:45:52 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:53:58 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# include <stdio.h> ////DELETE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # include <stdlib.h>
 # include <fcntl.h>
 # include "../mlx/mlx.h"
@@ -22,7 +23,8 @@
 # define PLAYERS 'P'
 # define WALL '1'
 # define SPACE '0'
-# define FILL '-1'
+# define FILL '1'
+# define SET "CEP10"
 
 enum error
 {
@@ -65,6 +67,7 @@ typedef struct s_data
 
 
 void	free_data(t_data data);
+void	free_2d_array_of_size(char **arr, int size);
 
 void	ft_error(int errcode);
 
@@ -73,5 +76,6 @@ int		validate_map(char *file, t_map *map);
 int		get_sizes_xy(char *file, t_map *map);
 char	**get_map_copy(char *file, t_map *map);
 
+int		check_path(char **map_copy, t_map *map);
 
 #endif
