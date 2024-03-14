@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/13 13:59:29 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:33:55 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@ int	validate_map(char *file, t_map *map)
 		return (ft_error(OS_MAP), 1);
 	map_copy = get_map_copy(file, map);
 	if (map_copy == NULL)
-		return (2);
+		return (1);
 	if (check_borders(map_copy, map) != 0)
-		return (3);
+		return (free_2d_array_of_size(map_copy, map->size_y), 3);
 	if (check_requirements(map_copy, map) != 0)
-		return (ft_error(REQ), 1);
-	if (check_paths(map_copy, map) != 0)
+	{
+		return (free_2d_array_of_size(map_copy, map->size_y), ft_error(REQ), 4);
+	}
+	if (check_path(map_copy, map) != 0)
+	{
+		free_2d_array_of_size(map_copy, map->size_y);
 		return (ft_error(PATH), 1);
+	}
 	return (0);
 }
 
@@ -71,27 +76,25 @@ static int	check_requirements(char **map_copy, t_map *map)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < map->size_y)
+	i = -1;
+	while (++i < map->size_y)
 	{
 		j = 0;
 		while (map_copy[i][j] != '\n')
 		{
-			if (map_copy[i][j] == WALL || map_copy[i][j] == SPACE)
-				j++;
-			else if (map_copy[i][j] == COLL || map_copy[i][j] == EXITS || \
+			if (map_copy[i][j] == COLL || map_copy[i][j] == EXITS || \
 			map_copy[i][j] == PLAYERS)
-			{
 				add_stats(map, map_copy[i][j], i, j);
-				j++;
-			}
-			else
+			else if (ft_strchr(SET, map_copy[i][j]) == NULL &&
+			map_copy[i][j] != '\0')
+				return (1);
+			else if (map_copy[i][j] == '\0')
 				break ;
+			j++;
 		}
-		i++;
 	}
 	if (map->collectibles < 1 || map->exit != 1 || map->player != 1)
-		return (4);
+		return (2);
 	return (0);
 }
 
