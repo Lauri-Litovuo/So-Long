@@ -1,46 +1,40 @@
-
 NAME = so_long
-BNAME = so_long_bonus
+BNAME = .bonus
 
+LIBFT = libft/libft.a
 
 S = srcs/
 O = objs/
 I = incl/
+L = libft/
 B = bonus/
 BO = bonus_objs/
 
-all: $(MLX_LIB) $(NAME)
+all: $(NAME)
 
 bonus: $(BNAME)
+
+libft: $(LIBFT)
 
 .PHONY: all clean fclean re bonus
 
 CC = cc
-CFLAGS += -Wall -Wextra -Werror -I$I
-LDFLAGS += 
+CFLAGS += -g -Wall -Wextra -Werror -I$I -I$L
+LDFLAGS += -I $(LIBFT) -L $L \
+    -I /usr/local/include -L /usr/local/lib \
+    -l mlx -l ft -framework OpenGL -framework Appkit
 
-### MLX ###
-
-ifeq ($(shell uname), Linux)
-	INCL_MLX = -I/usr/include -Imlx
-else
-	INCL_MLX = -I/opt/X11/include -Imlx
-endif
- 
-M = mlx
-MLX_LIB = $M/libmlx_$(UNAME).a
-
-
-ifeq ($(shell uname), Linux)
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-else
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-endif
-
+######################
 ##		MANDATORY 	##
+######################
 
 SRC = \
-		$S
+		$Scheck_path.c \
+		$Serrors.c \
+		$Sfree_structs.c \
+		$Smain.c \
+		$Sparse_map.c \
+		$Svalidate_map.c
 		
 OBJ = $(SRC:$S%=$O%.o)
 
@@ -50,35 +44,38 @@ $O:
 
 $(OBJ): | $O
 
-$O%.o: $S% $(MLX_LIB)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INCL_MLX)
+$O%.o: $S% $(LIBFT)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@  
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 	@echo "Project ready for use."
- 
 
+######################
 ##		BONUS		##
+######################
 
 SRC_B = \
-		$Bp
 
 OBJ_B = $(SRC_B:$B%=$(BO)%.o)
 
-$(BO):
+ $(BO):
 	@mkdir -p $@
 	@echo "Making obj dir and files.."
 
 $(OBJ_B): | $(BO)
 
-$(BO)%.o: $B% $(MLX_LIB)
-	@$(CC) $(CFLAGS)  -c $< -o $@ $(INCL_MLX)
+$(BO)%.o: $B% $(LIBFT)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(BNAME): $(OBJ_B) $(MLX_LIB)
-	@$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
+$(BNAME): $(OBJ_B) $(LIBFT)
+	@$(CC) $(CFLAGS) $^ -o $@
+	@cp -f .bonus so_long 
 	@echo "Bonus ready for use."
 
-#DEBUG
+######################
+##		DEBUG		##
+######################
 
 DEBUG_NAME = debug.out
 
@@ -86,18 +83,18 @@ debug: $(DEBUG_NAME)
 
 DEBUG_FLAGS = -g -fsanitize=address,undefined,integer
 
-$(DEBUG_NAME): $(LIBFT) $(OBJ)
-	@$(CC) $(DEBUG_FLAGS) $^ -o $@
+$(DEBUG_NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(DEBUG_FLAGS) $(CFLAGS) $^ -o $@
 	@echo "Debug ready for use."
 
 cleandebug: fclean
 	@rm -f $(DEBUG_NAME)
 	@echo "debug.out removed"
 
-#MLX LIB
+#LIBFT
 
-$(MLX_LIB):
-	@make -C $M
+$(LIBFT): $L
+	@make -C $L
 
 cleanobj:
 	@rm -f $(wildcard $(OBJ))
@@ -117,7 +114,7 @@ cleanlibft:
 clean: cleanobjdir cleanlibft cleanobjbdir
 	@echo "Cleaning object files and libft"
 
-fclean: clean
+fclean: clean cleanbonus
 	@rm -f $(NAME) $(BNAME)
 	@echo "Project file removed"
 
