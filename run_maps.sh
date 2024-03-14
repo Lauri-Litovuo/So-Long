@@ -6,7 +6,7 @@
 #    By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 10:54:33 by llitovuo          #+#    #+#              #
-#    Updated: 2024/03/14 12:44:31 by llitovuo         ###   ########.fr        #
+#    Updated: 2024/03/14 13:21:32 by llitovuo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,18 @@ CB="\033[1;36m"
 RC="\033[0m" # Reset Color
 FLL="**************"
 
+#call srcs/check_path.c srcs/errors.c srcs/free_structs.c srcs/map_test.c srcs/parse_map.c srcs/validate_map.c libft/libft.a -o map_test
 run_maptest()
 {
-	printf "${GB}Testing:${RC} ./map_test $1\n\n"
+	printf "${GB}Testing:${RC} ./map_test $1\n"
 	#cat $1
 	#printf "\n\n"
 	printf "${BB}Output:\n${RC}"
 	./map_test "$1"
-	printf "${RC}\n${RB}Exit Code: ${RC}$?\n\n\n"
+	printf "${RC}${RB}Exit Code: ${RC}$?\n"
+	#leaks --atExit -- ./map_test "$1"
+	#sleep 1	
+	printf "================================\n\n"
 }
 
 m1="maps/invalid/invalid_nocoll.ber"
