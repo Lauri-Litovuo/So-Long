@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:06:57 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/08 14:19:55 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:20:56 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	validate_input(int ac, char **av);
 int	main(int ac, char **av)
 {
 	t_map	map;
-	int		exitc;
 
 	map.max_x = 1980;
 	map.max_y = 1080;
 	if (validate_input(ac, av) != 0)
 		exit (1);
-	exitc = validate_map(av[1], &map);
-	return (exitc);
+	if (validate_map(av[1], &map) != 0)
+		exit (1);
+	return (0);
 }
 
 static int	validate_input(int ac, char **av)
