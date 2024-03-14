@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 12:53:58 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:10:44 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdio.h> ////DELETE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # include <stdlib.h>
 # include <fcntl.h>
-# include "../mlx/mlx.h"
 # include "../libft/libft.h"
+# include "mlx.h"
 # define TEXTURE_SIZE 50
 # define COLL 'C'
 # define EXITS 'E'
