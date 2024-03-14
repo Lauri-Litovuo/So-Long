@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 12:33:55 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:41:08 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ static int	check_requirements(char **map_copy, t_map *map)
 	while (++i < map->size_y)
 	{
 		j = 0;
-		while (map_copy[i][j] != '\n')
+		while (map_copy[i][j] != '\0')
 		{
 			if (map_copy[i][j] == COLL || map_copy[i][j] == EXITS || \
 			map_copy[i][j] == PLAYERS)
 				add_stats(map, map_copy[i][j], i, j);
 			else if (ft_strchr(SET, map_copy[i][j]) == NULL &&
-			map_copy[i][j] != '\0')
+			map_copy[i][j] != '\0' && map_copy[i][j] != '\n')
 				return (1);
 			else if (map_copy[i][j] == '\0')
 				break ;
