@@ -6,37 +6,49 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 10:02:51 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:38:47 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
 
 static int	validate_input(int ac, char **av);
+static void	init_data(t_data data);
 
 int	main(int ac, char **av)
 {
 	t_data	data;
-	t_map	map;
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		exit (1);
-	mlx_get_screen_size(data.mlx_ptr, map.max_x, map.max_y);
-	if (validate_input(ac, av) != 0 || validate_map(av[1], &map) != 0)
+	init_data(data);
+	if (validate_input(ac, av) != 0 || validate_map(av[1], data.map_ptr) != 0)
 		exit (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, map.size_x, map.size_y, "so_long");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map_ptr->size_x, data.map_ptr->size_y, "so_long");
 	if (data.win_ptr)
 	{
 		free_data(data);
-		free_map(map);
 		exit(1);
 	}
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
-	mlx_destroy_display(data.mlx_ptr);
 	free_data(data);
-	free_map(map);
 	return (0);
+}
+
+static void	init_data(t_data data)
+{
+	data.map_ptr->max_x = 1960;
+	data.map_ptr->max_y = 1080;
+	data.map_ptr->collectibles = 0;
+	data.map_ptr->collectibles_fill = 0;
+	data.map_ptr->exit = 0;
+	data.map_ptr->exit_fill = 0;
+	data.map_ptr->player = 0;
+	data.map_ptr->size_x = 0;
+	data.map_ptr->size_y = 0;
+	data.map_ptr->start.x_pos = 0;
+	data.map_ptr->start.x_pos = 0;
 }
 
 static int	validate_input(int ac, char **av)
