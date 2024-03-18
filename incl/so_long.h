@@ -6,17 +6,16 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:10:44 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:41:44 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include <stdio.h> ////DELETE THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # include <stdlib.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
-# include "mlx.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # define TEXTURE_SIZE 50
 # define COLL 'C'
 # define EXITS 'E'
@@ -55,19 +54,30 @@ typedef struct s_map
 	t_start	start;
 	int		max_x;
 	int		max_y;
+	char	**map_copy;
 }			t_map;
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	t_map	*map_ptr;
-	void	*win_ptr;
-	void	*textures[5];
+	void			*mlx_ptr;
+	t_map			*map_ptr;
+	void			*win_ptr;
+	mlx_texture_t	*wall_txt;
+	mlx_texture_t	*floor_txt;
+	mlx_texture_t	*collectable_txt;
+	mlx_texture_t	*player_txt;
+	mlx_texture_t	*exit_txt;
+	mlx_image_t		*wall;
+	mlx_image_t		*floor;
+	mlx_image_t		*collectable;
+	mlx_image_t		*player;
+	mlx_image_t		*exit;
 }			t_data;
 
 
-void	free_data(t_data data);
+void	free_data(t_data *data);
 void	free_2d_array_of_size(char **arr, int size);
+void	free_and_exit(t_data *data);
 
 void	ft_error(int errcode);
 
@@ -77,5 +87,7 @@ int		get_sizes_xy(char *file, t_map *map);
 char	**get_map_copy(char *file, t_map *map);
 
 int		check_path(char **map_copy, t_map *map);
+
+void	key_setup(mlx_key_data_t keydata, void *param);
 
 #endif
