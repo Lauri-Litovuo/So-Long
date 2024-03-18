@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:54:34 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/18 15:50:36 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:05:34 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_putnbr_base_fprintf(long int nbr, int *wlen, char *base_symbols, int fd)
 	}
 	if (long_nbr >= base)
 	{
-		if (ft_putnbr_base_fprintf(long_nbr / base, wlen, base, base_symbols) \
+		if (ft_putnbr_base_fprintf(long_nbr / base, wlen, base_symbols, fd) \
 		< 0)
 			return (-1);
 		*wlen += 1;
