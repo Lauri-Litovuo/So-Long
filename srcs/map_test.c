@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:06:57 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 13:20:56 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:55:54 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ static int	validate_input(int ac, char **av)
 		write (2, "Invalid amount of arguments\n", 28);
 		return (1);
 	}
-	/*if (av[1][0] == '\0')
-	{
-		write(2, "Error: File argument empty\n", 22);
-		return (2);
-	}*/
 	temp = ft_strnstr(av[1], ".ber", ft_strlen(av[1]));
 	if (temp == NULL || ft_strlen(temp) != 4)
 	{
