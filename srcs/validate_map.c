@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:41:08 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:21:31 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,21 @@ void			add_stats(t_map *map, int stat, int i, int j);
 
 int	validate_map(char *file, t_map *map)
 {
-	char	**map_copy;
-
 	if (get_sizes_xy(file, map) != 0)
 		return (1);
-	if (map->size_x * TEXTURE_SIZE > map->max_x || \
-	map->size_y * TEXTURE_SIZE > map->max_y)
-		return (ft_error(OS_MAP), 1);
-	map_copy = get_map_copy(file, map);
-	if (map_copy == NULL)
+	map->map_copy = get_map_copy(file, map);
+	if (map->map_copy == NULL)
 		return (1);
-	if (check_borders(map_copy, map) != 0)
-		return (free_2d_array_of_size(map_copy, map->size_y), 3);
-	if (check_requirements(map_copy, map) != 0)
+	if (check_borders(map->map_copy, map) != 0)
+		return (free_2d_array_of_size(map->map_copy, map->size_y), 3);
+	if (check_requirements(map->map_copy, map) != 0)
 	{
-		return (free_2d_array_of_size(map_copy, map->size_y), ft_error(REQ), 4);
+		free_2d_array_of_size(map->map_copy, map->size_y);
+		return (ft_error(REQ), 4);
 	}
-	if (check_path(map_copy, map) != 0)
+	if (check_path(map->map_copy, map) != 0)
 	{
-		free_2d_array_of_size(map_copy, map->size_y);
+		free_2d_array_of_size(map->map_copy, map->size_y);
 		return (ft_error(PATH), 1);
 	}
 	return (0);
