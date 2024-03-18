@@ -2,6 +2,7 @@ NAME = so_long
 BNAME = .bonus
 
 LIBFT = libft/libft.a
+LIBMLX = ./MLX42
 
 S = srcs/
 O = objs/
@@ -21,8 +22,7 @@ libft: $(LIBFT)
 CC = cc
 CFLAGS += -g -Wall -Wextra -Werror -I$I -I$L
 LDFLAGS += -I $(LIBFT) -L $L \
-    -I /usr/local/include -L /usr/local/lib \
-    -l mlx -l ft -framework OpenGL -framework Appkit
+    $(LIBMLX)/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 ######################
 ##		MANDATORY 	##
@@ -48,6 +48,7 @@ $O%.o: $S% $(LIBFT)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(LIBFT)
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 	@$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 	@echo "Project ready for use."
 
