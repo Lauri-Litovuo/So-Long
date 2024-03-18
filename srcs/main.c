@@ -6,49 +6,48 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/14 15:38:47 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:32:28 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
 
-static int	validate_input(int ac, char **av);
-static void	init_data(t_data data);
+static int		validate_input(int ac, char **av);
+static t_data	*init_data(void);
+void			create_game_window(t_data *data);
 
 int	main(int ac, char **av)
 {
-	t_data	data;
+	t_data	*data;
 
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
+	data = init_data();
+	if (validate_input(ac, av) != 0 || validate_map(av[1], data->map_ptr) != 0)
 		exit (1);
-	init_data(data);
-	if (validate_input(ac, av) != 0 || validate_map(av[1], data.map_ptr) != 0)
-		exit (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map_ptr->size_x, data.map_ptr->size_y, "so_long");
-	if (data.win_ptr)
-	{
-		free_data(data);
-		exit(1);
-	}
-	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
-	free_data(data);
+	create_game_window(data);
 	return (0);
 }
 
-static void	init_data(t_data data)
+static t_data	*init_data(void)
 {
-	data.map_ptr->max_x = 1960;
-	data.map_ptr->max_y = 1080;
-	data.map_ptr->collectibles = 0;
-	data.map_ptr->collectibles_fill = 0;
-	data.map_ptr->exit = 0;
-	data.map_ptr->exit_fill = 0;
-	data.map_ptr->player = 0;
-	data.map_ptr->size_x = 0;
-	data.map_ptr->size_y = 0;
-	data.map_ptr->start.x_pos = 0;
-	data.map_ptr->start.x_pos = 0;
+	t_data	*data;
+
+	data = malloc (sizeof(t_data));
+	if (!data)
+		exit (1);
+	data->map_ptr = malloc (sizeof(t_map));
+	if (!data)
+		exit (1);
+	data->map_ptr->collectibles = 0;
+	data->map_ptr->collectibles_fill = 0;
+	data->map_ptr->exit = 0;
+	data->map_ptr->exit_fill = 0;
+	data->map_ptr->player = 0;
+	data->map_ptr->size_x = 0;
+	data->map_ptr->size_y = 0;
+	data->map_ptr->start.x_pos = 0;
+	data->map_ptr->start.x_pos = 0;
+	data->map_ptr->map_copy = NULL;
+	return (data);
 }
 
 static int	validate_input(int ac, char **av)
@@ -78,4 +77,33 @@ static int	validate_input(int ac, char **av)
 	}
 	return (0);
 }
+
+void	create_game_window(t_data *data)
+{
+	data->mlx_ptr = mlx_init(data->map_ptr->size_x * TEXTURE_SIZE, \
+	data->map_ptr->size_y * TEXTURE_SIZE, "The moving day", false);
+	if (data->mlx_ptr == NULL)
+		exit (1);
+	mlx_get_monitor_size(0, data->map_ptr->max_x, data->map_ptr->max_y);
+	if (data->map_ptr->size_x * TEXTURE_SIZE > data->map_ptr->max_x
+		|| data->map_ptr->size_y * TEXTURE_SIZE > data->map_ptr->max_y)
+	{
+		ft_error(OS_MAP);
+		free_and_exit(data);
+	}
+	data->win_ptr = \
+	mlx_new_image(data->mlx_ptr, data->map_ptr->size_x, data->map_ptr->size_y);
+	if (!data->win_ptr)
+		free_and_exit(data);
+	init_textures();
+	init_image();
+	map_setup();
+	mlx_key_hook(data->mlx_ptr, &key_setup, data);
+	mlx_loop(data->mlx_ptr);
+	mlx_close_window(data->mlx_ptr);
+	free_data(data);
+	mlx_terminate(data->mlx_ptr);
+}
+
+
 
