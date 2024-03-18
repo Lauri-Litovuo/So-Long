@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/18 12:41:44 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:55:04 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ char	**get_map_copy(char *file, t_map *map);
 int		check_path(char **map_copy, t_map *map);
 
 void	key_setup(mlx_key_data_t keydata, void *param);
+void	init_textures(t_data *data);
 
 #endif
