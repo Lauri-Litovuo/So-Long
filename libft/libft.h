@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 10:02:06 by llitovuo          #+#    #+#             */
-/*   Updated: 2023/12/27 16:58:13 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:00:14 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,13 @@ char	*ft_strchr_gnl(char *s, int c);
 size_t	ft_strlcpy_gnl(char *dst, char *src, size_t dstsize);
 size_t	ft_strlcat_gnl(char *dst, char *src, size_t dstsize);
 char	*ft_strjoin_gnl(char *s1, char *s2);
+
+int		ft_fprintf(int fd, const char *str, ...);
+int		ft_putchar_fprintf(char c, int fd, int wlen);
+int		ft_putnbr_base_fprintf(long int nbr, int *wlen, \
+	char *base_symbols, int fd);
+int		ft_putptr_fprintf(unsigned long long nbr, int *wlen, \
+	char *b_symb, int fd);
+int		ft_putstr_fprintf(char *str, int fd, int wlen);
 
 #endif
