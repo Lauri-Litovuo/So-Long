@@ -51,6 +51,11 @@ SOURCES = ft_isascii.c \
 			./ft_printf/ft_putptr.c \
 			./get_next_line/get_next_line.c \
 			./get_next_line/get_next_line_utils.c \
+			./ft_fprintf/ft_fprintf.c \
+			./ft_fprintf/ft_putchar_fprintf.c \
+			./ft_fprintf/ft_putnbr_base_fprintf.c \
+			./ft_fprintf/ft_putptr_fprintf.c \
+			./ft_fprintf/ft_putstr_fprintf.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -58,7 +63,7 @@ HEADERS = libft.h
 
 CC: cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 $(NAME): $(OBJECTS)
 	@ar -rsc $(NAME) $(OBJECTS)
