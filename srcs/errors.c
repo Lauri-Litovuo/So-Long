@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:47:11 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/13 13:22:58 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:01:46 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ void	ft_error(int errcode)
 		write (2, "Error\nMap requirements not met.\n", 32);
 	else if (errcode == PATH)
 		write (2, "Error\nNo paths to win.\n", 23);
+}
+
+void	mlx_errors(t_data *data)
+{
+	ft_fprintf(2, "Error\n%s\n", mlx_strerror(mlx_errno));
+	free_and_exit(data);
 }
