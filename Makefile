@@ -34,7 +34,9 @@ SRC = \
 		$Sfree_structs.c \
 		$Smain.c \
 		$Sparse_map.c \
-		$Svalidate_map.c
+		$Svalidate_map.c \
+		$Smlx_helper_functions.c \
+		$Smovement.c
 		
 OBJ = $(SRC:$S%=$O%.o)
 
