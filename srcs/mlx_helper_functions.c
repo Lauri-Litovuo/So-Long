@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:25:54 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 15:17:21 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:03:38 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_images(t_data *data)
 	data->exit = mlx_texture_to_image(data->mlx, data->exit_txt);
 	if (!data->exit)
 		mlx_errors(data);
-	mlx_delete_texture(data->floor);
+	mlx_delete_texture(data->floor_txt);
 	mlx_delete_texture(data->wall_txt);
 	mlx_delete_texture(data->player_txt);
 	mlx_delete_texture(data->collectable_txt);
