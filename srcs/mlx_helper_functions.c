@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:25:54 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:03:38 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:15:49 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 void	init_textures(t_data *data)
 {
-	data->floor_txt = mlx_load_png("../textures/floor/floor.png");
+	data->floor_txt = mlx_load_png("textures/floor/floor.png");
 	if (!data->floor_txt)
 		mlx_errors(data);
-	data->wall_txt = mlx_load_png("../textures/wall2.png");
+	data->wall_txt = mlx_load_png("textures/wall2.png");
 	if (!data->wall_txt)
 		mlx_errors(data);
-	data->player_txt = mlx_load_png("../textures/player/player.png");
+	data->player_txt = mlx_load_png("textures/player/player.png");
 	if (!data->player_txt)
 		mlx_errors(data);
 	data->collectable_txt = \
-	mlx_load_png("../textures/collectibles/collectable.png");
+	mlx_load_png("textures/collectibles/collectable.png");
 	if (!data->collectable_txt)
 		mlx_errors(data);
-	data->exit_txt = mlx_load_png("../textures/exits\exit.png");
+	data->exit_txt = mlx_load_png("textures/exits/exit.png");
 	if (!data->exit_txt)
 		mlx_errors(data);
 }
