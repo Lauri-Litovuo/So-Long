@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/18 10:32:28 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:15:46 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	t_data	*data;
 
 	data = init_data();
-	if (validate_input(ac, av) != 0 || validate_map(av[1], data->map_ptr) != 0)
+	if (validate_input(ac, av) != 0 || validate_map(av[1], data->map) != 0)
 		exit (1);
 	create_game_window(data);
 	return (0);
@@ -34,19 +34,19 @@ static t_data	*init_data(void)
 	data = malloc (sizeof(t_data));
 	if (!data)
 		exit (1);
-	data->map_ptr = malloc (sizeof(t_map));
+	data->map = malloc (sizeof(t_map));
 	if (!data)
 		exit (1);
-	data->map_ptr->collectibles = 0;
-	data->map_ptr->collectibles_fill = 0;
-	data->map_ptr->exit = 0;
-	data->map_ptr->exit_fill = 0;
-	data->map_ptr->player = 0;
-	data->map_ptr->size_x = 0;
-	data->map_ptr->size_y = 0;
-	data->map_ptr->start.x_pos = 0;
-	data->map_ptr->start.x_pos = 0;
-	data->map_ptr->map_copy = NULL;
+	data->map->collectibles = 0;
+	data->map->collectibles_fill = 0;
+	data->map->exit = 0;
+	data->map->exit_fill = 0;
+	data->map->player = 0;
+	data->map->size_x = 0;
+	data->map->size_y = 0;
+	data->map->x_pos = 0;
+	data->map->x_pos = 0;
+	data->map->map_copy = NULL;
 	return (data);
 }
 
@@ -80,30 +80,33 @@ static int	validate_input(int ac, char **av)
 
 void	create_game_window(t_data *data)
 {
-	data->mlx_ptr = mlx_init(data->map_ptr->size_x * TEXTURE_SIZE, \
-	data->map_ptr->size_y * TEXTURE_SIZE, "The moving day", false);
-	if (data->mlx_ptr == NULL)
+	data->mlx = mlx_init(data->map->size_x * TXT_SIZE, \
+	data->map->size_y * TXT_SIZE, "The moving day", false);
+	if (data->mlx == NULL)
 		exit (1);
-	mlx_get_monitor_size(0, data->map_ptr->max_x, data->map_ptr->max_y);
-	if (data->map_ptr->size_x * TEXTURE_SIZE > data->map_ptr->max_x
-		|| data->map_ptr->size_y * TEXTURE_SIZE > data->map_ptr->max_y)
+	mlx_get_monitor_size(0, &data->map->max_x, &data->map->max_y);
+	if (data->map->size_x * TXT_SIZE > data->map->max_x
+		|| data->map->size_y * TXT_SIZE > data->map->max_y)
 	{
 		ft_error(OS_MAP);
 		free_and_exit(data);
 	}
-	data->win_ptr = \
-	mlx_new_image(data->mlx_ptr, data->map_ptr->size_x, data->map_ptr->size_y);
-	if (!data->win_ptr)
+	data->win = \
+	mlx_new_image(data->mlx, data->map->size_x, data->map->size_y);
+	if (!data->win)
 		free_and_exit(data);
-	init_textures();
-	init_image();
-	map_setup();
-	mlx_key_hook(data->mlx_ptr, &key_setup, data);
-	mlx_loop(data->mlx_ptr);
-	mlx_close_window(data->mlx_ptr);
+	init_textures(data);
+	init_images(data);
+	create_floor(data);
+	create_objects(data);
+	mlx_key_hook(data->mlx, &key_hooking, data);
+	mlx_loop(data->mlx);
+	mlx_close_window(data->mlx);
 	free_data(data);
-	mlx_terminate(data->mlx_ptr);
+	mlx_terminate(data->mlx);
 }
+
+
 
 
 
