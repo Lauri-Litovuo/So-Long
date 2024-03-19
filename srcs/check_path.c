@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:28:01 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 15:15:25 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:43:21 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	check_path(char **map_copy, t_map *map)
 		free_2d_array_of_size(fill_map, map->size_y);
 		return (1);
 	}
+	map->collectibles_fill = map->collectibles;
 	free_2d_array_of_size(fill_map, map->size_y);
 	return (0);
 }
