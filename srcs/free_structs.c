@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:48:24 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/18 10:09:19 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:14:31 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	free_2d_array_of_size(char **arr, int size)
 
 void	free_data(t_data *data)
 {
-	free_2d_array_of_size(data->map_ptr->map_copy, data->map_ptr->size_y);
-	free(data->mlx_ptr);
-	free(data->win_ptr);
-	free(data->map_ptr);
+	free_2d_array_of_size(data->map->map_copy, data->map->size_y);
+	free(data->mlx);
+	free(data->win);
+	free(data->map);
 	free(data);
 }
 
