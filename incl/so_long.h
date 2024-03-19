@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 15:16:42 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/19 15:40:35 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_map
 	int		exit;
 	int		exit_fill;
 	int		player;
-	t_start	start;
 	int		max_x;
 	int		max_y;
 	int		x_pos;
