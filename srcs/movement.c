@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:45:24 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:09:10 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:42:58 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ static int	allow_movement(int move, t_map *map)
 	return (1);
 }
 
-void	key_hooking(mlx_key_data_t keydata, t_data *data)
+void	key_hooking(mlx_key_data_t keydata, void *param)
 {
+	t_data	*data;
+
+	data = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(data->mlx);
 	if (((keydata.key == MLX_KEY_A) || (keydata.key == MLX_KEY_LEFT)) \
