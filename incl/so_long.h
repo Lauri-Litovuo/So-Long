@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:04:25 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:43:25 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	create_objects(t_data *data);
 void	create_floor(t_data *data);
 void	init_images(t_data *data);
 
-void	key_hooking(mlx_key_data_t keydata, t_data *data);
+void	key_hooking(mlx_key_data_t keydata, void *param);
 
 
 
