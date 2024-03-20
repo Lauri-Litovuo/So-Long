@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 12:47:11 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/18 16:01:46 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:24:36 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	ft_error(int errcode)
 {
 	if (errcode == FIL)
 		write (2, "Error\nOpening file.\n", 20);
-	else if (errcode == MLC)
-		write (2, "Error\nMalloc failed.\n", 21);
 	else if (errcode == MLC)
 		write (2, "Error\nMalloc failed\n", 20);
 	else if (errcode == OS_MAP)
