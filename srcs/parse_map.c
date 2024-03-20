@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:55:07 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/13 13:55:47 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:20:43 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	get_sizes_xy(char *file, t_map *map)
 	}
 	close (fd);
 	map->size_y = i;
-	map->size_x = len;
+	map->size_x = len - 1;
 	return (0);
 }
 
