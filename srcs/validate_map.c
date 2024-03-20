@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 15:18:04 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:31:10 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ static int	check_borders(char **map_copy, t_map *map)
 		{
 			while (j < map->size_x && map_copy[i][j] == WALL)
 				j++;
-			if (j != map->size_x - 1)
+			if (j != map->size_x)
 				return (ft_error(WALLS), 1);
 		}
 		else
 		{
-			while (j < map->size_x - 1)
+			while (j < map->size_x)
 			{
-				if ((j == 0 || j == map->size_x - 2) && map_copy[i][j] != WALL)
+				if ((j == 0 || j == map->size_x - 1) && map_copy[i][j] != WALL)
 					return (ft_error(RECT), 1);
 				j++;
 			}
