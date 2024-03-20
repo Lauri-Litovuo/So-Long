@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:45:24 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 11:42:58 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:32:10 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,3 @@ void	key_hooking(mlx_key_data_t keydata, void *param)
 			data->player->instances[0].y += 50;
 	check_rules(data);
 }
-

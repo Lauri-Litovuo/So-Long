@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 13:22:27 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:31:51 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,3 @@ void	create_game_window(t_data *data)
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
 }
-
-
-
-
-

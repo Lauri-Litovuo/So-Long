@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 10:31:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 12:31:10 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:32:18 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,3 @@ void	add_stats(t_map *map, int stat, int i, int j)
 		map->x_pos = j;
 	}
 }
-
-
-

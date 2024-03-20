@@ -6,12 +6,11 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:25:54 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 13:20:28 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:32:37 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
-
 
 void	init_textures(t_data *data)
 {
@@ -76,7 +75,6 @@ void	create_floor(t_data *data)
 		i++;
 	}
 }
-
 
 void	create_objects(t_data *data)
 {

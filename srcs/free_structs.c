@@ -6,12 +6,11 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:48:24 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 13:25:18 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:31:40 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
-
 
 void	free_2d_array_of_size(char **arr, int size)
 {
@@ -39,4 +38,3 @@ void	free_and_exit(t_data *data)
 	free_data(data);
 	exit(1);
 }
-
