@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:25:54 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 16:15:49 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:20:28 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 void	init_textures(t_data *data)
 {
-	data->floor_txt = mlx_load_png("textures/floor/floor.png");
-	if (!data->floor_txt)
-		mlx_errors(data);
-	data->wall_txt = mlx_load_png("textures/wall2.png");
+	data->wall_txt = mlx_load_png("textures/wall/wall2.png");
 	if (!data->wall_txt)
 		mlx_errors(data);
 	data->player_txt = mlx_load_png("textures/player/player.png");
 	if (!data->player_txt)
+		mlx_errors(data);
+	data->floor_txt = mlx_load_png("textures/floor/floor.png");
+	if (!data->floor_txt)
 		mlx_errors(data);
 	data->collectable_txt = \
 	mlx_load_png("textures/collectibles/collectable.png");
@@ -63,15 +63,17 @@ void	create_floor(t_data *data)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < data->map->size_y)
+	i = 0;
+	while (i < data->map->size_y)
 	{
-		j = -1;
-		while (++j < data->map->size_x)
+		j = 0;
+		while (j < data->map->size_x)
 		{
 			mlx_image_to_window \
-			(data->mlx, data->floor, TXT_SIZE * i, TXT_SIZE * j);
+			(data->mlx, data->floor, TXT_SIZE * j, TXT_SIZE * i);
+			j++;
 		}
+		i++;
 	}
 }
 
@@ -81,24 +83,26 @@ void	create_objects(t_data *data)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < data->map->size_y)
+	i = 0;
+	while (i < data->map->size_y)
 	{
-		j = -1;
-		while (++j < data->map->size_x)
+		j = 0;
+		while (j < data->map->size_x)
 		{
 			if (data->map->map_copy[i][j] == WALL)
 				mlx_image_to_window \
-				(data->mlx, data->wall, TXT_SIZE * i, TXT_SIZE * j);
-			else if (data->map->map_copy[i][j] == COLL)
+				(data->mlx, data->wall, TXT_SIZE * j, TXT_SIZE * i);
+			if (data->map->map_copy[i][j] == COLL)
 				mlx_image_to_window \
-				(data->mlx, data->collectable, TXT_SIZE * i, TXT_SIZE * j);
-			else if (data->map->map_copy[i][j] == PLAYER)
+				(data->mlx, data->collectable, TXT_SIZE * j, TXT_SIZE * i);
+			if (data->map->map_copy[i][j] == PLAYER)
 				mlx_image_to_window \
-				(data->mlx, data->player, TXT_SIZE * i, TXT_SIZE * j);
-			else if (data->map->map_copy[i][j] == EXITS)
+				(data->mlx, data->player, TXT_SIZE * j, TXT_SIZE * i);
+			if (data->map->map_copy[i][j] == EXITS)
 				mlx_image_to_window \
-				(data->mlx, data->exit, TXT_SIZE * i, TXT_SIZE * j);
+				(data->mlx, data->exit, TXT_SIZE * j, TXT_SIZE * i);
+			j++;
 		}
+		i++;
 	}
 }
