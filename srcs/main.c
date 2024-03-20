@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/19 15:15:46 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:22:27 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	if (validate_input(ac, av) != 0 || validate_map(av[1], data->map) != 0)
 		exit (1);
 	create_game_window(data);
+	free_data(data);
 	return (0);
 }
 
@@ -101,8 +102,6 @@ void	create_game_window(t_data *data)
 	create_objects(data);
 	mlx_key_hook(data->mlx, &key_hooking, data);
 	mlx_loop(data->mlx);
-	mlx_close_window(data->mlx);
-	free_data(data);
 	mlx_terminate(data->mlx);
 }
 
