@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 14:31:51 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/25 10:16:45 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	validate_input(int ac, char **av)
 	temp = ft_strnstr(av[1], ".ber", ft_strlen(av[1]));
 	if (temp == NULL || ft_strlen(temp) != 4)
 	{
-		write(2, "Error: argument is not .ber\n", 28);
+		ft_error(BER);
 		return (3);
 	}
 	if (access(av[1], F_OK) != 0 || access(av[1], R_OK) != 0)
@@ -100,6 +100,7 @@ void	create_game_window(t_data *data)
 	init_images(data);
 	create_floor(data);
 	create_objects(data);
+	create_player(data);
 	mlx_key_hook(data->mlx, &key_hooking, data);
 	mlx_loop(data->mlx);
 	mlx_terminate(data->mlx);
