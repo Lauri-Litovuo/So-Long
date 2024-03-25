@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/20 11:43:25 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:07:23 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef enum e_error
 	WALLS = 4,
 	REQ = 5,
 	RECT = 6,
-	PATH = 7
+	PATH = 7,
+	BER = 8
 }	t_error;
 
 typedef enum e_movement
@@ -97,6 +98,7 @@ void	init_textures(t_data *data);
 void	create_objects(t_data *data);
 void	create_floor(t_data *data);
 void	init_images(t_data *data);
+void	create_player(t_data *data);
 
 void	key_hooking(mlx_key_data_t keydata, void *param);
 
