@@ -59,6 +59,14 @@ $(NAME): $(OBJ) $(LIBFT)
 ######################
 
 SRC_B = \
+		$Bcheck_path_bonus.c \
+		$Berrors_bonus.c \
+		$Bfree_structs_bonus.c \
+		$Bmain_bonus.c \
+		$Bparse_map_bonus.c \
+		$Bvalidate_map_bonus.c \
+		$Bmlx_helper_functions_bonus.c \
+		$Bmovement_bonus.c
 
 OBJ_B = $(SRC_B:$B%=$(BO)%.o)
 
@@ -72,7 +80,8 @@ $(BO)%.o: $B% $(LIBFT)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BNAME): $(OBJ_B) $(LIBFT)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
 	@cp -f .bonus so_long 
 	@echo "Bonus ready for use."
 
