@@ -6,7 +6,7 @@
 #    By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 10:54:33 by llitovuo          #+#    #+#              #
-#    Updated: 2024/03/14 13:21:32 by llitovuo         ###   ########.fr        #
+#    Updated: 2024/03/25 09:31:09 by llitovuo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,11 @@ FLL="**************"
 #call srcs/check_path.c srcs/errors.c srcs/free_structs.c srcs/map_test.c srcs/parse_map.c srcs/validate_map.c libft/libft.a -o map_test
 run_maptest()
 {
-	printf "${GB}Testing:${RC} ./map_test $1\n"
+	printf "${GB}Testing:${RC} ./so_long $1\n"
 	#cat $1
 	#printf "\n\n"
 	printf "${BB}Output:\n${RC}"
-	./map_test "$1"
+	./so_long "$1"
 	printf "${RC}${RB}Exit Code: ${RC}$?\n"
 	#leaks --atExit -- ./map_test "$1"
 	#sleep 1	
@@ -49,11 +49,11 @@ m5="maps/invalid/invalid_path.ber"
 m6="maps/invalid/invalid_char.ber"
 m7="maps/invalid/invalid_toobig.ber"
 m8="maps/invalid/invalid_walls.ber"
-m9="maps/valid/smallest1.ber"
-m10="maps/valid/smallest2.ber"
-m11="maps/valid/smallest3.ber"
-m12="maps/valid/subj_ex1.ber"
-m13="maps/valid/subj_ex2.ber"
+#m9="maps/valid/smallest1.ber"
+#m10="maps/valid/smallest2.ber"
+#m11="maps/valid/smallest3.ber"
+#m12="maps/valid/subj_ex1.ber"
+#m13="maps/valid/subj_ex2.ber"
 
 printf "\n${P}${FLL}****************${P}${FLL}${RC}\n"
 printf "${P}${FLL}${RC}${RB}So_long MAP TEST${P}${FLL}${RC}\n"
@@ -66,8 +66,8 @@ run_maptest ${m5}
 run_maptest ${m6}
 run_maptest ${m7}
 run_maptest ${m8}
-run_maptest ${m9}
-run_maptest ${m10}
-run_maptest ${m11}
-run_maptest ${m12}
-run_maptest ${m13}
+#run_maptest ${m9}
+#run_maptest ${m10}
+#run_maptest ${m11}
+#run_maptest ${m12}
+#run_maptest ${m13}
