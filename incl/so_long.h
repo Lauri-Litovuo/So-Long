@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/25 15:07:23 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:19:08 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct s_data
 	mlx_image_t		*exit;
 }			t_data;
 
-
 void	free_data(t_data *data);
 void	free_2d_array_of_size(char **arr, int size);
 void	free_and_exit(t_data *data);
@@ -102,6 +101,6 @@ void	create_player(t_data *data);
 
 void	key_hooking(mlx_key_data_t keydata, void *param);
 
-
+void	place_object(char c, t_data *data, int i, int j);
 
 #endif

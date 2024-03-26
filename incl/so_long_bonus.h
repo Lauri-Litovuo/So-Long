@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/25 15:46:15 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:16:53 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ void	create_player(t_data *data);
 
 void	key_hooking(mlx_key_data_t keydata, void *param);
 
-
+void	place_object(char c, t_data *data, int i, int j);
 
 #endif
