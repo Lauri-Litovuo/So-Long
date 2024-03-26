@@ -6,7 +6,7 @@
 #    By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 10:54:33 by llitovuo          #+#    #+#              #
-#    Updated: 2024/03/25 09:31:09 by llitovuo         ###   ########.fr        #
+#    Updated: 2024/03/26 12:02:18 by llitovuo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,15 +49,19 @@ m5="maps/invalid/invalid_path.ber"
 m6="maps/invalid/invalid_char.ber"
 m7="maps/invalid/invalid_toobig.ber"
 m8="maps/invalid/invalid_walls.ber"
-#m9="maps/valid/smallest1.ber"
-#m10="maps/valid/smallest2.ber"
-#m11="maps/valid/smallest3.ber"
-#m12="maps/valid/subj_ex1.ber"
-#m13="maps/valid/subj_ex2.ber"
+m9="maps/invalid/newline_end.ber"
+m10="maps/invalid/newline_middle.ber"
+m11="maps/invalid/newline_start.ber"
+m12="maps/invalid/newline_start.be"
+m13="maps/invalid/newline_start.beri"
+m14="maps/invalid/.ber"
+m15="maps/invalid/empty_map.ber"
 
 printf "\n${P}${FLL}****************${P}${FLL}${RC}\n"
 printf "${P}${FLL}${RC}${RB}So_long MAP TEST${P}${FLL}${RC}\n"
 printf "${P}${FLL}****************${P}${FLL}${RC}\n\n"
+
+run_maptest
 run_maptest ${m1}
 run_maptest ${m2}
 run_maptest ${m3}
@@ -66,8 +70,10 @@ run_maptest ${m5}
 run_maptest ${m6}
 run_maptest ${m7}
 run_maptest ${m8}
-#run_maptest ${m9}
-#run_maptest ${m10}
-#run_maptest ${m11}
-#run_maptest ${m12}
-#run_maptest ${m13}
+run_maptest ${m9}
+run_maptest ${m10}
+run_maptest ${m11}
+run_maptest ${m12}
+run_maptest ${m13}
+run_maptest ${m14}
+run_maptest ${m15}
