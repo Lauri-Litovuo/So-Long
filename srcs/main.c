@@ -6,13 +6,13 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:01:18 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/25 10:16:45 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:00:27 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/so_long.h"
 
-static int		validate_input(int ac, char **av);
+static int		validate_input(char **av);
 static t_data	*init_data(void);
 void			create_game_window(t_data *data);
 
@@ -20,8 +20,13 @@ int	main(int ac, char **av)
 {
 	t_data	*data;
 
+	if (ac != 2)
+	{
+		write (2, "Error\nInvalid amount of arguments\n", 34);
+		return (1);
+	}
 	data = init_data();
-	if (validate_input(ac, av) != 0 || validate_map(av[1], data->map) != 0)
+	if (validate_input(av) != 0 || validate_map(av[1], data->map) != 0)
 		exit (1);
 	create_game_window(data);
 	free_data(data);
@@ -51,18 +56,13 @@ static t_data	*init_data(void)
 	return (data);
 }
 
-static int	validate_input(int ac, char **av)
+static int	validate_input(char **av)
 {
 	char	*temp;
 
-	if (ac != 2)
-	{
-		write (2, "Invalid amount of arguments\n", 28);
-		return (1);
-	}
 	if (av[1][0] == '\0')
 	{
-		write(2, "Error: empty argument\n", 22);
+		write(2, "Error\nEmpty argument\n", 22);
 		return (2);
 	}
 	temp = ft_strnstr(av[1], ".ber", ft_strlen(av[1]));
@@ -73,6 +73,7 @@ static int	validate_input(int ac, char **av)
 	}
 	if (access(av[1], F_OK) != 0 || access(av[1], R_OK) != 0)
 	{
+		write (2, "Error\n", 6);
 		perror(av[1]);
 		return (4);
 	}
