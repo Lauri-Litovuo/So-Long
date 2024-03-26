@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:25:54 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/25 14:50:56 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:17:26 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,7 @@ void	create_objects(t_data *data)
 		j = 0;
 		while (j < data->map->size_x)
 		{
-			if (data->map->map_copy[i][j] == WALL)
-				mlx_image_to_window \
-				(data->mlx, data->wall, TXT_SIZE * j, TXT_SIZE * i);
-			if (data->map->map_copy[i][j] == COLL)
-				mlx_image_to_window \
-				(data->mlx, data->collectable, TXT_SIZE * j, TXT_SIZE * i);
-			if (data->map->map_copy[i][j] == EXITS)
-				mlx_image_to_window \
-				(data->mlx, data->exit, TXT_SIZE * j, TXT_SIZE * i);
+			place_object (data->map->map_copy[i][j], data, i, j);
 			j++;
 		}
 		i++;
