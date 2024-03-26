@@ -36,7 +36,8 @@ SRC = \
 		$Sparse_map.c \
 		$Svalidate_map.c \
 		$Smlx_helper_functions.c \
-		$Smovement.c
+		$Smovement.c \
+		$Smlx_helpers2.c
 		
 OBJ = $(SRC:$S%=$O%.o)
 
@@ -66,7 +67,8 @@ SRC_B = \
 		$Bparse_map_bonus.c \
 		$Bvalidate_map_bonus.c \
 		$Bmlx_helper_functions_bonus.c \
-		$Bmovement_bonus.c
+		$Bmovement_bonus.c \
+		$Bmlx_helpers2_bonus.c
 
 OBJ_B = $(SRC_B:$B%=$(BO)%.o)
 
