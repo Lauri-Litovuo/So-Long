@@ -6,7 +6,7 @@
 /*   By: llitovuo <llitovuo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 18:51:10 by llitovuo          #+#    #+#             */
-/*   Updated: 2024/03/26 12:16:53 by llitovuo         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:00:15 by llitovuo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ typedef struct s_data
 	mlx_image_t		*exit_2;
 	mlx_image_t		*text;
 }			t_data;
-
 
 void	free_data(t_data *data);
 void	free_2d_array_of_size(char **arr, int size);
