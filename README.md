@@ -1,5 +1,7 @@
 # So-Long
 
+![](/showcase/game.gif)
+
 ## Introduction
 The So_long is a 2D game project that was done as a part of the curriculum for the Hive Helsinki Coding Sccool. The goal of the project was to create a simple 2D game using C and a graphics library called MLX. The game mechanics and rules were given by the school.
 
