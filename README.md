@@ -15,6 +15,7 @@ This project provided an opportunity for me to learn about game development, use
 - [Game](#game)
 - [Tests](#tests)
 - [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 ## Installation
 To play the game follow these steps:
@@ -37,3 +38,7 @@ The program was play tested and by using run_maps.sh tester, which runs invalid 
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+The sprites to this game were downloaded from itch.io by the artists [A_Foxli](https://a-foxli.itch.io/lost-forest-pixel-tile-forest), [Vivite](https://vivite.itch.io/the-squirrel-rise), and [MXT Games](https://mxtgames.itch.io/forest-vegetation-lite). Thank you for sharing your work.
