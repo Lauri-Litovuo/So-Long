@@ -20,7 +20,7 @@ To play the game follow these steps:
 
 And you're good to go!
 
-An macOS is required to run this game. You can find MLX dependencies on their git: [MLX42] (https://github.com/codam-coding-college/MLX42)
+An macOS is required to run this game. You can find MLX dependencies on their git: [MLX42](https://github.com/codam-coding-college/MLX42)
 
 ## Game
 The player’s goal is to collect every collectible present on the map, then escape chosing the shortest possible route.
@@ -32,4 +32,4 @@ To play check available maps in 'cd maps/valid/' or create your own map. Run a m
 The program was play tested and by using run_maps.sh tester, which runs invalid maps and invalid user inputs.
 
 ## License
-This project is licensed under the MIT License - see the [LISENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
